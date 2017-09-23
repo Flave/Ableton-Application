@@ -1,0 +1,21 @@
+#grid-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: -1;
+}
+
+.line-container {
+  border-bottom: 1px dashed rgba(0, 0, 0, .07);
+  position: absolute;
+  width: 100%;
+
+  &--eighth {
+    border-bottom-color: rgba(0, 0, 0, .12);
+  }
+
+  &--full {
+    border-bottom-color: rgba(0, 0, 0, .3);;
+  }
+}
