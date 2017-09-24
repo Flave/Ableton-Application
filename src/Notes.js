@@ -65,16 +65,17 @@ export default function Grid() {
       })
   }
 
-  function checkNote(d) {
+  function checkNote(d, doBounce) {
     const bbox = this.getBoundingClientRect();
+    const offsetRatio = (bbox.left + bbox.width) / window.innerWidth;
     if(bbox.top + bbox.height/2 <= runUp && !d.played) {
       d.played = true;
-      bounce(this);
-      dispatch.call('play', null, d.instrumentId, 1);
+      doBounce && bounce(this);
+      dispatch.call('play', null, d.instrumentId, offsetRatio, 1);
     } else if(bbox.top + bbox.height/2 > runUp && d.played) {
       d.played = false;
-      bounce(this);
-      dispatch.call('play', null, d.instrumentId, -1);
+      doBounce && bounce(this);
+      dispatch.call('play', null, d.instrumentId, offsetRatio, -1);
     }
   }
 
@@ -100,14 +101,7 @@ export default function Grid() {
 
     draw();
     const bbox = this.getBoundingClientRect();
-
-    if(bbox.top + bbox.height/2 < runUp && !d.played) {
-      dispatch.call('play', null, d.instrumentId, 1)
-      d.played = true;
-    } else if(bbox.top + bbox.height/2 >= runUp && d.played) {
-      dispatch.call('play', null, d.instrumentId, -1)
-      d.played = false;
-    }
+    checkNote.call(this, d, false);
   }
 
 

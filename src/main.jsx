@@ -22,6 +22,7 @@ const musicContainer = d3_select('#music-container');
 const adderContainer = d3_select('#adder-container');
 const controlsContainer = d3_select('#controls-container');
 const content = document.getElementById('content');
+
 let height = content.offsetHeight;
 let runUp = window.innerHeight * .5;
 let scoreHeight = height - 2 * runUp;
@@ -51,8 +52,8 @@ function handleResize() {
   draw();
 }
 
-function handlePlay(instrumentId, reverse) {
-  player.play(instrumentId, reverse);
+function handlePlay(instrumentId, gain, reverse) {
+  player.play(instrumentId, gain, reverse);
 }
 
 function handleAdd(instrumentId, {x, y}) {

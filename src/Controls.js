@@ -92,7 +92,7 @@ export default function PlayButton() {
 
   function stop() {
     isPlaying = false;
-    timer.stop();
+    timer && timer.stop();
     draw();
   }
 

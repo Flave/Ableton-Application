@@ -40,12 +40,15 @@ function player(_ctx){
     return target;
   }
 
-  _player.play = function(id, direction){
+  _player.play = function(id, gain, direction){
     if(!buffers.length) return;
+    let gainNode = ctx.createGain();
     let source = ctx.createBufferSource();
     const bufferSpec = _find(buffers, {id});
+    gainNode.gain.value = gain * gain;
     source.buffer = direction === 1 ? bufferSpec.buffer : bufferSpec.reversedBuffer;
-    source.connect(ctx.destination);
+    source.connect(gainNode);
+    gainNode.connect(ctx.destination);
     source.start();
   }
 
