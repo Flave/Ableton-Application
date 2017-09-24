@@ -91,7 +91,7 @@ export default function Grid() {
   function onScroll() {
     notes.each(checkNote);
   }
-  const throttledOnScroll = _throttle(onScroll, 30);
+  const throttledOnScroll = _throttle(onScroll, 20);
 
   function handleDrag(d) {
     let {x, y} = d3_event;

@@ -12,6 +12,7 @@
   width: 40px;
   height: 40px;
   pointer-events: all;
+  cursor: pointer;
 
   &.is-played {
     .note__image {

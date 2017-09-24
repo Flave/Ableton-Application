@@ -15,10 +15,12 @@ import Grid from './Grid';
 import Notes from './Notes';
 import Player from './Player';
 import Loader from './Loader';
+import Controls from './Controls';
 
 const gridContainer = d3_select('#grid-container');
 const musicContainer = d3_select('#music-container');
 const adderContainer = d3_select('#adder-container');
+const controlsContainer = d3_select('#controls-container');
 const content = document.getElementById('content');
 let height = content.offsetHeight;
 let runUp = window.innerHeight * .5;
@@ -32,6 +34,7 @@ const adder = Adder()
     .on('play', handlePlay)
 const grid = Grid();
 const notes = Notes().on('play', handlePlay)
+const controls = Controls();
 const loader = Loader(audioContext);
 const player = Player(audioContext);
 
@@ -48,8 +51,8 @@ function handleResize() {
   draw();
 }
 
-function handlePlay(instrumentId, direction) {
-  player.play(instrumentId);
+function handlePlay(instrumentId, reverse) {
+  player.play(instrumentId, reverse);
 }
 
 function handleAdd(instrumentId, {x, y}) {
@@ -69,14 +72,11 @@ const draw = () => {
     .spacing(scoreHeight / NUM_LINES)
     .height(scoreHeight)(musicContainer);
 
+  controls(controlsContainer);
+
   adder.runUp(runUp)(adderContainer);
 }
 
 window.addEventListener('resize', _throttle(handleResize, 200));
 
 draw();
-
-
-// CHECK WHEN SCROLLING
-// RESIZE
-// PADDING TOP

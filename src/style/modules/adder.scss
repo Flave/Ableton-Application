@@ -1,17 +1,12 @@
-#adder {
-  position: fixed;
-  top: 0;
-  left: 0;
+.adder {
+  display: inline-block;
   color: #fff;
   background-color: #222;
   padding: 8px 14px;
 }
 
 .adder__copy {
-  display: inline-block;
-  vertical-align: middle;
-  text-transform: uppercase;
-  letter-spacing: .08em;
+  @include ui-text;
 }
 
 .adder__instrument {
@@ -30,6 +25,7 @@
   height: 45px;
   position: relative;
   display: inline-block;
+  cursor: pointer;
 
   &.is-played {
     animation-name: bounce;

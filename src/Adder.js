@@ -8,7 +8,6 @@ import scrollPosition from 'utility/scrollPosition';
 
 export default function Adder() {
   let parent;
-  let notes;
   let runUp;
   let dispatch = d3_dispatch('add', 'play');
   let drag = d3_drag()
