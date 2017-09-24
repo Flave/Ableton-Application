@@ -56,6 +56,7 @@ const draw = () => {
     .height(scoreHeight)(musicContainer);
 
   adder
+    .runUp(runUp)
     .on('add', function(instrumentId, {x, y}) {
       // push into array of music data so it appears in the middle
       musicData.push({instrumentId,x,y});

@@ -43,9 +43,7 @@ export default function Grid() {
       .style('top', (d) => {
         let y = d.y !== undefined ? d.y : getYFromScore(d);
         let distToLastBeat = (y % spacing) + 12;
-        if(y < runUp)
-          y = runUp
-        else if(distToLastBeat < spacing/4)
+        if(distToLastBeat < spacing/4)
           y = Math.floor(y / spacing) * spacing - 12;
         else if(distToLastBeat > spacing - spacing/4)
           y = Math.ceil(y / spacing) * spacing - 12;
@@ -71,11 +69,19 @@ export default function Grid() {
     const bbox = this.getBoundingClientRect();
     if(bbox.top + bbox.height/2 <= runUp && !d.played) {
       d.played = true;
+      bounce(this);
       dispatch.call('play', null, d.instrumentId, 1);
     } else if(bbox.top + bbox.height/2 > runUp && d.played) {
       d.played = false;
+      bounce(this);
       dispatch.call('play', null, d.instrumentId, -1);
     }
+  }
+
+  function bounce(el) {
+    el = d3_select(el);
+    el.classed('is-played', true);
+    window.setTimeout(() => el.classed('is-played', false), 300);
   }
 
   function getYFromScore(d) {
@@ -89,7 +95,7 @@ export default function Grid() {
 
   function handleDrag(d) {
     let {x, y} = d3_event;
-    d.y = y;
+    d.y = y < runUp ? runUp : y;
     d.x = x;
 
     draw();

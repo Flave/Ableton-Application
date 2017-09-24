@@ -40,12 +40,3 @@
 .adder__instrument-image {
   width: 100%;
 }
-
-@keyframes bounce {
-  0%, 100% {
-    transform: scale(1);
-  }
-  10%, 50% {
-    transform: scale(1.3);
-  }
-}

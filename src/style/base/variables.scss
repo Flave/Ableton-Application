@@ -10,3 +10,12 @@ $c-alert: #de5f75;
   border-radius: 2px;
   color: #fff;
 }
+
+@keyframes bounce {
+  0%, 100% {
+    transform: scale(1);
+  }
+  10%, 50% {
+    transform: scale(1.3);
+  }
+}

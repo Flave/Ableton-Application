@@ -1,6 +1,3 @@
-import _throttle from 'lodash/throttle';
-import _find from 'lodash/find';
-import _findIndex from 'lodash/findIndex';
 import INSTRUMENTS from './instruments';
 import rebind from 'utility/rebind';
 import {dispatch as d3_dispatch} from 'd3-dispatch';
@@ -12,6 +9,7 @@ import scrollPosition from 'utility/scrollPosition';
 export default function Adder() {
   let parent;
   let notes;
+  let runUp;
   let dispatch = d3_dispatch('add', 'play');
   let drag = d3_drag()
     .on('start', handleDragStart)
@@ -73,10 +71,14 @@ export default function Adder() {
     if(x - d.dragOffset.x !== 0 && y - d.dragOffset.y !== 0) {
       const centerDx = d.dragOffset.x - 45/2;
       const centerDy = d.dragOffset.y - 45/2;
+      const y = d3_event.sourceEvent.clientY - centerDy + scrollPosition().top;
+      const x = d3_event.sourceEvent.clientX - centerDx;
+
+      console.log(y, runUp);
 
       dispatch.call('add', null, d.id, {
-        x: d3_event.sourceEvent.clientX - centerDx,
-        y: d3_event.sourceEvent.clientY - centerDy + scrollPosition().top
+        x: x,
+        y: y < runUp ? runUp : y
       });
     }
 
@@ -84,6 +86,11 @@ export default function Adder() {
     d3_select(this)
       .classed('is-played', false)
       .style('transform', 'none');
+  }
+
+  _adder.runUp = function(_) {
+    runUp = _;
+    return _adder;
   }
 
   return rebind(_adder, dispatch, 'on');
