@@ -74,8 +74,6 @@ export default function Adder() {
       const y = d3_event.sourceEvent.clientY - centerDy + scrollPosition().top;
       const x = d3_event.sourceEvent.clientX - centerDx;
 
-      console.log(y, runUp);
-
       dispatch.call('add', null, d.id, {
         x: x,
         y: y < runUp ? runUp : y
