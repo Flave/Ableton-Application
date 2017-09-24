@@ -48,7 +48,7 @@ export default function Adder() {
     const bbox = this.getBoundingClientRect();
     const offsetX = bbox.width - (bbox.width - x);
     const offsetY = bbox.height - (bbox.height - y);
-    dispatch.call('play', null, d.id, 1);
+    dispatch.call('play', null, d.id, 1, 1);
     d.dragOffset = {x: offsetX, y: offsetY};
 
     d3_select(this)
