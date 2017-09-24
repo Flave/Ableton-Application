@@ -1,0 +1,51 @@
+#adder {
+  position: fixed;
+  top: 0;
+  left: 0;
+  color: #fff;
+  background-color: #222;
+  padding: 8px 14px;
+}
+
+.adder__copy {
+  display: inline-block;
+  vertical-align: middle;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+.adder__instrument {
+  display: inline-block;
+  width: 45px;
+  height: 45px;
+  vertical-align: middle;
+  position: relative;
+  margin-left: 5px;
+  background-size: 100% 100%;
+  background-position: 50% 50%;
+}
+
+.adder__draggable {
+  width: 45px;
+  height: 45px;
+  position: relative;
+  display: inline-block;
+
+  &.is-played {
+    animation-name: bounce;
+    animation-duration: .2s;
+  }
+}
+
+.adder__instrument-image {
+  width: 100%;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: scale(1);
+  }
+  10%, 50% {
+    transform: scale(1.3);
+  }
+}

@@ -11,16 +11,9 @@ function player(_ctx) {
 
   _player.play = function(id) {
     if(!buffers.length) return;
-    // Get an AudioBufferSourceNode.
-    // This is the AudioNode to use when we want to play an AudioBuffer
     var source = ctx.createBufferSource();
-    // set the buffer in the AudioBufferSourceNode
-    console.log(buffers, id);
     source.buffer = _find(buffers, {id}).buffer;
-    // connect the AudioBufferSourceNode to the
-    // destination so we can hear the sound
     source.connect(ctx.destination);
-    // start the source playing
     source.start();
   }
 

@@ -1,6 +1,12 @@
 import _throttle from 'lodash/throttle';
+import _find from 'lodash/find';
+import _findIndex from 'lodash/findIndex';
+import INSTRUMENTS from './instruments';
 import rebind from 'utility/rebind';
 import {dispatch as d3_dispatch} from 'd3-dispatch';
+import {drag as d3_drag} from 'd3-drag';
+import {select as d3_select} from 'd3-selection';
+import {event as d3_event} from 'd3-selection';
 
 export default function Grid() {
   let parent;
@@ -12,6 +18,8 @@ export default function Grid() {
   let spacing;
   let runUp;
   let dispatch = d3_dispatch('play');
+  var drag = d3_drag()
+    .on('drag', handleDrag);
 
   function _notes(_parent) {
     parent = _parent;
@@ -24,34 +32,78 @@ export default function Grid() {
     const notesEnter = notesUpdate.enter()
       .append('div')
       .classed('note', true)
-      .style('top', (d, i) => `${getY(d)}px`)
+      .call(drag);
 
-    notes = notesEnter.merge(notesUpdate);
+    notesEnter
+      .append('img')
+      .attr('src', (d) =>  _find(INSTRUMENTS, {id: d.instrumentId}).image)
+      .classed('note__image', true);
+
+    notes = notesEnter.merge(notesUpdate)
+      .style('top', (d) => {
+        let y = d.y !== undefined ? d.y : getYFromScore(d);
+        let distToLastBeat = (y % spacing) + 12;
+        if(y < runUp)
+          y = runUp
+        else if(distToLastBeat < spacing/4)
+          y = Math.floor(y / spacing) * spacing - 12;
+        else if(distToLastBeat > spacing - spacing/4)
+          y = Math.ceil(y / spacing) * spacing - 12;
+        return `${y}px`
+      })
+      .style('left', (d) => {
+        if(d.x === undefined && d.gain === undefined) 
+          return 0;
+        if(d.x === undefined && d.gain !== undefined) {
+          return `${d.gain * window.innerWidth}px`
+        }
+        return `${d.x}px`;
+      })
+      .style('transform', function(d) {
+        const width = window.innerWidth;
+        const x = parseInt(d3_select(this).style('left').replace('px', ''));
+        const scale = x / width * 4 + 1;
+        return `translate(-50%, -50%) scale(${scale})`;
+      })
   }
 
   function checkNote(d) {
-    const top = this.getBoundingClientRect().top
-    if(top < runUp && !d.played) {
+    const bbox = this.getBoundingClientRect();
+    if(bbox.top + bbox.height/2 <= runUp && !d.played) {
       d.played = true;
-      dispatch.call('play', null, d, 1);
-    } else if(top > runUp && d.played) {
+      dispatch.call('play', null, d.instrumentId, 1);
+    } else if(bbox.top + bbox.height/2 > runUp && d.played) {
       d.played = false;
-      dispatch.call('play', null, d, -1);
+      dispatch.call('play', null, d.instrumentId, -1);
     }
   }
 
-  function getY(d) {
+  function getYFromScore(d) {
     return (d.bar * spacing * 16) + (d.beat * spacing) + (d.offset * spacing) + runUp;
   }
 
   function onScroll() {
     notes.each(checkNote);
   }
-  const throttledOnScroll = _throttle(onScroll, 100);
+  const throttledOnScroll = _throttle(onScroll, 30);
 
-  function registerEvents() {
-    document.addEventListener('scroll', throttledOnScroll);
+  function handleDrag(d) {
+    let {x, y} = d3_event;
+    d.y = y;
+    d.x = x;
+
+    draw();
+    const bbox = this.getBoundingClientRect();
+
+    if(bbox.top + bbox.height/2 < runUp && !d.played) {
+      dispatch.call('play', null, d.instrumentId, 1)
+      d.played = true;
+    } else if(bbox.top + bbox.height/2 >= runUp && d.played) {
+      dispatch.call('play', null, d.instrumentId, -1)
+      d.played = false;
+    }
   }
+
 
   _notes.height = function(_){
     if(!arguments.length) return height;
@@ -77,6 +129,6 @@ export default function Grid() {
     return _notes;
   }
 
-  registerEvents();
+  document.addEventListener('scroll', throttledOnScroll);
   return rebind(_notes, dispatch, 'on');
 }
