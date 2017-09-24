@@ -7,6 +7,7 @@ import {dispatch as d3_dispatch} from 'd3-dispatch';
 import {drag as d3_drag} from 'd3-drag';
 import {select as d3_select} from 'd3-selection';
 import {event as d3_event} from 'd3-selection';
+import scrollPosition from 'utility/scrollPosition';
 
 export default function Adder() {
   let parent;
@@ -75,7 +76,7 @@ export default function Adder() {
 
       dispatch.call('add', null, d.id, {
         x: d3_event.sourceEvent.clientX - centerDx,
-        y: d3_event.sourceEvent.clientY - centerDy
+        y: d3_event.sourceEvent.clientY - centerDy + scrollPosition().top
       });
     }
 
