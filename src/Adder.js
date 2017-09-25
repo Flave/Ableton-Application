@@ -59,9 +59,10 @@ export default function Adder() {
     const {x, y} = d3_event;
     const parentX = this.parentNode.getBoundingClientRect().left;
     const scale = (parentX + x) / window.innerWidth * 4 + 1;
+    const rotation = (parentX + x) / window.innerWidth * 360;
     d3_select(this)
       .classed('is-played', false)
-      .style('transform', `translate(${x - d.dragOffset.x}px, ${y - d.dragOffset.y}px) scale(${scale})`)
+      .style('transform', `translate(${x - d.dragOffset.x}px, ${y - d.dragOffset.y}px) scale(${scale}) rotate(${rotation}deg)`)
       .style('transform-origin', `${d.offsetX}px ${d.offsetY}px`);
   }
 

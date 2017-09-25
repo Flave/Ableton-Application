@@ -3,6 +3,11 @@
   color: #fff;
   margin-left: -7px;
   vertical-align: top;
+
+  &.is-hidden {
+    pointer-events: none;
+    opacity: 0.6;
+  }
 }
 
 .controls__play-button,

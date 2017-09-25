@@ -1,5 +1,11 @@
 #content {
   padding: 0 40px;
+
+  &.is-hidden {
+    visibility: hidden;
+    pointer-events: none;
+    opacity: 0;
+  }
 }
 
 .content__section {

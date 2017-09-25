@@ -28,6 +28,7 @@ export default function Controls() {
   }
 
   function draw() {
+
     const currentScrollPos = scrollPosition();
 
     // PLAY

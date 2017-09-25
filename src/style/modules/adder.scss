@@ -1,8 +1,13 @@
-.adder {
+#adder-container {
   display: inline-block;
   color: #fff;
   background-color: #222;
   padding: 8px 14px;
+
+  &.is-hidden {
+    pointer-events: none;
+    opacity: 0.6;
+  }
 }
 
 .adder__copy {

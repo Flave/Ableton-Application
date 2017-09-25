@@ -18,8 +18,9 @@ export default function Grid() {
   let spacing;
   let runUp;
   let dispatch = d3_dispatch('play');
-  var drag = d3_drag()
+  let drag = d3_drag()
     .on('drag', handleDrag);
+  let state = {showSound: true};
 
   function _notes(_parent) {
     parent = _parent;
@@ -29,8 +30,9 @@ export default function Grid() {
 
   function draw() {
     notesUpdate = parent.selectAll('div.note').data(data);
-    const notesEnter = notesUpdate.enter()
+    notesEnter = notesUpdate.enter()
       .append('div')
+      //.each(function(d) {checkNote.call(this, d, true)})
       .classed('note', true)
       .call(drag);
 
@@ -62,22 +64,28 @@ export default function Grid() {
         const width = window.innerWidth;
         const x = parseInt(d3_select(this).style('left').replace('px', ''));
         const scale = x / width * 3 + 1;
-        return `translate(-50%, -50%) scale(${scale})`;
+        const rotation = x / width * 360;
+        return `translate(-50%, -50%) scale(${scale}) rotate(${rotation}deg)`;
       })
+
+    notesUpdate.exit()
+      .attr('transform', 'translate(-50%, -50%) scale(0)')
+      .remove();
   }
 
-  function checkNote(d, doBounce) {
+  function checkNote(d, mute) {
+    mute = mute || !state.showSound;
     const bbox = this.getBoundingClientRect();
     const centerY = window.innerHeight/2;
     const offsetRatio = (bbox.left + bbox.width) / window.innerWidth;
     if(bbox.top + bbox.height/2 <= centerY && !d.played) {
       d.played = true;
-      doBounce && bounce(this);
-      dispatch.call('play', null, d.instrumentId, offsetRatio, 1);
+      !mute && bounce(this);
+      !mute && dispatch.call('play', null, d.instrumentId, offsetRatio, 1);
     } else if(bbox.top + bbox.height/2 > centerY && d.played) {
       d.played = false;
-      doBounce && bounce(this);
-      dispatch.call('play', null, d.instrumentId, offsetRatio, -1);
+      !mute && bounce(this);
+      !mute && dispatch.call('play', null, d.instrumentId, offsetRatio, -1);
     }
   }
 
@@ -93,7 +101,7 @@ export default function Grid() {
 
   function onScroll() {
     notes.each(function(d) {
-      checkNote.call(this, d, true);
+      checkNote.call(this, d);
     });
   }
   const throttledOnScroll = _throttle(onScroll, 20);
@@ -105,7 +113,7 @@ export default function Grid() {
 
     draw();
     const bbox = this.getBoundingClientRect();
-    checkNote.call(this, d, false);
+    checkNote.call(this, d);
   }
 
 
@@ -130,6 +138,12 @@ export default function Grid() {
   _notes.runUp = function(_){
     if(!arguments.length) return runUp;
     runUp = _;
+    return _notes;
+  }
+
+  _notes.state = function(_){
+    if(!arguments.length) return state;
+    state = _;
     return _notes;
   }
 
