@@ -42,11 +42,12 @@ export default function Grid() {
     notes = notesEnter.merge(notesUpdate)
       .style('top', (d) => {
         let y = d.y !== undefined ? d.y : getYFromScore(d);
-        let distToLastBeat = (y % spacing) + 12;
-        if(distToLastBeat < spacing/4)
-          y = Math.floor(y / spacing) * spacing - 12;
+        let distToLastBeat = (y % spacing) + 3;
+        if(distToLastBeat < spacing/4) {
+          y = Math.floor(y / spacing) * spacing - 3;
+        }
         else if(distToLastBeat > spacing - spacing/4)
-          y = Math.ceil(y / spacing) * spacing - 12;
+          y = Math.ceil(y / spacing) * spacing - 3;
         return `${y}px`
       })
       .style('left', (d) => {
@@ -60,19 +61,20 @@ export default function Grid() {
       .style('transform', function(d) {
         const width = window.innerWidth;
         const x = parseInt(d3_select(this).style('left').replace('px', ''));
-        const scale = x / width * 4 + 1;
+        const scale = x / width * 3 + 1;
         return `translate(-50%, -50%) scale(${scale})`;
       })
   }
 
   function checkNote(d, doBounce) {
     const bbox = this.getBoundingClientRect();
+    const centerY = window.innerHeight/2;
     const offsetRatio = (bbox.left + bbox.width) / window.innerWidth;
-    if(bbox.top + bbox.height/2 <= runUp && !d.played) {
+    if(bbox.top + bbox.height/2 <= centerY && !d.played) {
       d.played = true;
       doBounce && bounce(this);
       dispatch.call('play', null, d.instrumentId, offsetRatio, 1);
-    } else if(bbox.top + bbox.height/2 > runUp && d.played) {
+    } else if(bbox.top + bbox.height/2 > centerY && d.played) {
       d.played = false;
       doBounce && bounce(this);
       dispatch.call('play', null, d.instrumentId, offsetRatio, -1);
@@ -90,7 +92,9 @@ export default function Grid() {
   }
 
   function onScroll() {
-    notes.each(checkNote);
+    notes.each(function(d) {
+      checkNote.call(this, d, true);
+    });
   }
   const throttledOnScroll = _throttle(onScroll, 20);
 

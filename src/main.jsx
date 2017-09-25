@@ -23,9 +23,10 @@ const adderContainer = d3_select('#adder-container');
 const controlsContainer = d3_select('#controls-container');
 const content = document.getElementById('content');
 
-let height = content.offsetHeight;
-let runUp = window.innerHeight * .5;
-let scoreHeight = height - 2 * runUp;
+
+let runUp;
+let height;
+let scoreHeight;
 
 const audioContext = new AudioContext();
 const queue = d3_queue();
@@ -45,10 +46,13 @@ queue
     player.buffers(buffers);
   });
 
-function handleResize() {
+function recalculateDimensions() {
+  runUp = window.innerHeight * .6;
   height = content.offsetHeight;
-  runUp = window.innerHeight * .5;
-  scoreHeight = height - 2 * runUp;
+  scoreHeight = height - runUp - window.innerHeight/2;
+}
+
+function handleResize() {
   draw();
 }
 
@@ -62,6 +66,7 @@ function handleAdd(instrumentId, {x, y}) {
 }
 
 const draw = () => {
+  recalculateDimensions();
   grid
     .runUp(runUp)
     .spacing(scoreHeight / NUM_LINES)
@@ -73,7 +78,8 @@ const draw = () => {
     .spacing(scoreHeight / NUM_LINES)
     .height(scoreHeight)(musicContainer);
 
-  controls(controlsContainer);
+  controls
+    .spacing(scoreHeight / NUM_LINES)(controlsContainer);
 
   adder.runUp(runUp)(adderContainer);
 }
