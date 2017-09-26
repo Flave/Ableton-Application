@@ -1,5 +1,7 @@
 import {NUM_LINES, NUM_BARS} from './constants';
 import {range as d3_range} from 'd3-array';
+import {select as d3_select} from 'd3-selection';
+import {selectAll as d3_selectAll} from 'd3-selection';
 
 export default function Grid() {
   let parent;
@@ -34,6 +36,29 @@ export default function Grid() {
     lines = linesEnter.merge(linesUpdate)
       .style('height', `${spacing}px`)
       .style('top', d => `${getY(d)}px`);
+
+
+
+    // Color the lines depending on what section they happen to be placed on
+    d3_selectAll('.content__section')
+      .each(function(d) {
+        let height = this.offsetHeight;
+        let top = this.offsetTop;
+        let isDark = this.classList.contains('black') || this.classList.contains('purple-dark') || this.classList.contains('blue');
+        lines
+          .attr('class', function(d) {
+            let lineTop = this.offsetTop;
+            let className = d3_select(this).attr('class');
+            if(lineTop > top && lineTop <= (top + height)) {
+              if(isDark) {
+                return `${className} line-container--bright`
+              } else {
+                return `${className} line-container--dark`
+              }
+            }
+            return className;
+          })
+      });
   }
 
   function getY(i) {    
