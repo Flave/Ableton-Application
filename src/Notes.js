@@ -42,28 +42,26 @@ export default function Grid() {
       .classed('note__image', true);
 
     notes = notesEnter.merge(notesUpdate)
-      .style('top', (d) => {
+      .style('top', (d, i) => {
+        let width = window.innerWidth;
+        let x = d.gain * width;
+        let scale = d.scale ? d.scale : x / width * 1 + 1;
         let y = d.y !== undefined ? d.y : getYFromScore(d);
-        let distToLastBeat = (y % spacing) + 3;
-        if(distToLastBeat < spacing/4) {
-          y = Math.floor(y / spacing) * spacing - 3;
-        }
+        let distToLastBeat = ((y - runUp) % spacing) - 0;
+        if(distToLastBeat < spacing/4)
+          y = Math.floor((y-runUp) / spacing) * spacing + runUp;
         else if(distToLastBeat > spacing - spacing/4)
-          y = Math.ceil(y / spacing) * spacing - 3;
+          y = Math.ceil((y-runUp) / spacing) * spacing + runUp;
+
         return `${y}px`
       })
       .style('left', (d) => {
-        if(d.x === undefined && d.gain === undefined) 
-          return 0;
-        if(d.x === undefined && d.gain !== undefined) {
-          return `${d.gain * window.innerWidth}px`
-        }
-        return `${d.x}px`;
+        return `${d.gain * window.innerWidth}px`;
       })
       .style('transform', function(d) {
         const width = window.innerWidth;
         const x = parseInt(d3_select(this).style('left').replace('px', ''));
-        const scale = x / width * 3 + 1;
+        const scale = d.scale ? d.scale : x / width * 1 + 1;
         const rotation = x / width * 360;
         return `translate(-50%, -50%) scale(${scale}) rotate(${rotation}deg)`;
       })
@@ -109,7 +107,8 @@ export default function Grid() {
   function handleDrag(d) {
     let {x, y} = d3_event;
     d.y = y < runUp ? runUp : y;
-    d.x = x;
+    d.gain = x / window.innerWidth;
+    d.scale = x / window.innerWidth * 1 + 1;
 
     draw();
     const bbox = this.getBoundingClientRect();

@@ -2,18 +2,26 @@ $primary-color: #3f71ff;
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body, html {
   font-family: 'Inconsolata', monospace;
   opacity: 1;
-}
-
-body.is-loading {
-  opacity: 0;
+  background: $c-blue;
+  transition: opacity .75s;
 }
 
 a {
   text-decoration: none;
   color: inherit;
+}
+
+#grid-container,
+#music-container,
+.ui,
+#hints-container {
+  opacity: 1;
+  transition: opacity 1s;
 }

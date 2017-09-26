@@ -35,7 +35,7 @@ function player(_ctx){
     if(target) copy(buffer, target);
     else target = buffer;
     for(var i = 0, c = target.numberOfChannels; i < c; ++i)
-        target.getChannelData(i).reverse();
+        target.getChannelData(i).reverse && target.getChannelData(i).reverse();
 
     return target;
   }
