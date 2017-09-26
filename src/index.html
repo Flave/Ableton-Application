@@ -2,106 +2,211 @@
 <html>
   <head>
     <!-- Global Site Tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-107062342-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments)};
+      gtag('js', new Date());
+
+      gtag('config', 'UA-107062342-1');
+    </script>
+
+    <!-- Global Site Tag (gtag.js) - Google Analytics -->
     <link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet">
     <!-- COMMON TAGS -->
     <meta charset="utf-8">
     <title>Application at Ableton</title>
     <style type="text/css">
-      #initial-spinner {
-        position: fixed;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        /*background-image: url("./assets/images/spinner.gif");*/
-        background-repeat: no-repeat;
-        background-position: center center;
-        z-index: 1;
-      }
+        body.is-loading {
+            opacity: 0;
+        }
+        body.is-reading-intro #grid-container,
+        body.is-reading-intro #music-container,
+        body.is-reading-intro .ui,
+        body.is-reading-intro #hints-container {
+            opacity: 0;
+        }
     </style>
   </head>
-  <body>
+  <body class="is-loading is-reading-intro">
     <div id="grid-container">
+        <div class="middle-line"></div>
         <div class="middle-marker"></div>
     </div>
     <div id="content">
-        <div class="content__section">
-            <h1>This is my stuff</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce bibendum nec magna id bibendum. Proin suscipit nibh tortor, id mattis ante fringilla eu. Maecenas id neque et mauris vehicula gravida. Suspendisse sed dignissim justo. Ut rutrum ornare elit eleifend molestie. Maecenas iaculis ipsum sit amet mauris rhoncus pulvinar. Fusce vehicula risus lacus, ut tincidunt lorem iaculis vel. Nullam quis pretium lectus. Sed mollis in leo in tincidunt.
 
-            <p>Mauris aliquet eros id urna porttitor, a consectetur leo commodo. Curabitur tellus nisl, tristique in nulla id, rutrum finibus mauris. Etiam non dignissim quam. Vestibulum pellentesque hendrerit lectus, quis commodo turpis. Nullam consectetur, arcu at mattis sollicitudin, urna risus auctor nulla, scelerisque eleifend turpis est a sem. Suspendisse vel rhoncus nulla. Aenean semper fermentum odio, a interdum sapien scelerisque sed.</p>
-
-            <p>Vestibulum feugiat tincidunt justo in pretium. Nam nec erat id ex lacinia blandit porttitor quis mi. Sed egestas porttitor sem, non iaculis urna volutpat nec. Maecenas commodo pharetra nulla, sed aliquet enim porta eu. Nam volutpat ligula ut est maximus, nec fringilla magna vestibulum. Praesent molestie lectus nunc, eget tincidunt mi auctor nec. Nunc nec scelerisque tellus, id maximus lectus. Nunc congue nisl a porttitor sollicitudin.</p>
-
-            <p>In sit amet dapibus libero. Nulla volutpat, augue et euismod placerat, sapien libero fringilla turpis, id pellentesque leo arcu vitae ex. Curabitur turpis lorem, congue tempus tincidunt eget, pharetra eget justo. Integer at imperdiet arcu. Vivamus ut ultrices mauris, nec commodo dolor. Fusce laoreet nunc eget lectus fermentum, at semper dui lobortis. Suspendisse molestie placerat nulla. Suspendisse commodo ex arcu, at sagittis neque varius in.</p>
-
-            <p>In imperdiet, odio eu rutrum bibendum, arcu felis blandit odio, et eleifend lectus massa tincidunt magna. Duis tristique urna vitae risus eleifend, vitae posuere tellus molestie. Donec quis urna a neque ultricies pretium. Integer porta, dui non hendrerit ullamcorper, mi est molestie justo, nec sagittis orci leo vitae nunc. Maecenas vel consectetur enim. Proin sollicitudin, est auctor laoreet egestas, nulla mauris lobortis mauris, in placerat erat ante vel ipsum. Pellentesque pulvinar lectus scelerisque, mollis erat vel, posuere mauris.</p>
-
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce bibendum nec magna id bibendum. Proin suscipit nibh tortor, id mattis ante fringilla eu. Maecenas id neque et mauris vehicula gravida. Suspendisse sed dignissim justo. Ut rutrum ornare elit eleifend molestie. Maecenas iaculis ipsum sit amet mauris rhoncus pulvinar. Fusce vehicula risus lacus, ut tincidunt lorem iaculis vel. Nullam quis pretium lectus. Sed mollis in leo in tincidunt.
-
-            <p>Mauris aliquet eros id urna porttitor, a consectetur leo commodo. Curabitur tellus nisl, tristique in nulla id, rutrum finibus mauris. Etiam non dignissim quam. Vestibulum pellentesque hendrerit lectus, quis commodo turpis. Nullam consectetur, arcu at mattis sollicitudin, urna risus auctor nulla, scelerisque eleifend turpis est a sem. Suspendisse vel rhoncus nulla. Aenean semper fermentum odio, a interdum sapien scelerisque sed.</p>
-
-            <p>Vestibulum feugiat tincidunt justo in pretium. Nam nec erat id ex lacinia blandit porttitor quis mi. Sed egestas porttitor sem, non iaculis urna volutpat nec. Maecenas commodo pharetra nulla, sed aliquet enim porta eu. Nam volutpat ligula ut est maximus, nec fringilla magna vestibulum. Praesent molestie lectus nunc, eget tincidunt mi auctor nec. Nunc nec scelerisque tellus, id maximus lectus. Nunc congue nisl a porttitor sollicitudin.</p>
-
-            <p>In sit amet dapibus libero. Nulla volutpat, augue et euismod placerat, sapien libero fringilla turpis, id pellentesque leo arcu vitae ex. Curabitur turpis lorem, congue tempus tincidunt eget, pharetra eget justo. Integer at imperdiet arcu. Vivamus ut ultrices mauris, nec commodo dolor. Fusce laoreet nunc eget lectus fermentum, at semper dui lobortis. Suspendisse molestie placerat nulla. Suspendisse commodo ex arcu, at sagittis neque varius in.</p>
-
-            <p>In imperdiet, odio eu rutrum bibendum, arcu felis blandit odio, et eleifend lectus massa tincidunt magna. Duis tristique urna vitae risus eleifend, vitae posuere tellus molestie. Donec quis urna a neque ultricies pretium. Integer porta, dui non hendrerit ullamcorper, mi est molestie justo, nec sagittis orci leo vitae nunc. Maecenas vel consectetur enim. Proin sollicitudin, est auctor laoreet egestas, nulla mauris lobortis mauris, in placerat erat ante vel ipsum. Pellentesque pulvinar lectus scelerisque, mollis erat vel, posuere mauris.</p>
+        <!-- INTRO -->
+        <div id="intro" class="content__section content__section--intro blue">
+            <div class="content__section-inner">
+                <h1>Hey there and welcome to my little musical portfolio</h1>
+                <p class="content__lead">Unfortunately I cannot present you with a plethora of live Web Audio projects and experiments. That’s why I thought I just show you other things I’ve worked on so far that might interest you and underline that presentation itself with some accoustic intervention.</p>
+            </div>
         </div>
-        <div class="content__section">
-            <h1>This is my stuff</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce bibendum nec magna id bibendum. Proin suscipit nibh tortor, id mattis ante fringilla eu. Maecenas id neque et mauris vehicula gravida. Suspendisse sed dignissim justo. Ut rutrum ornare elit eleifend molestie. Maecenas iaculis ipsum sit amet mauris rhoncus pulvinar. Fusce vehicula risus lacus, ut tincidunt lorem iaculis vel. Nullam quis pretium lectus. Sed mollis in leo in tincidunt.
 
-            <p>Mauris aliquet eros id urna porttitor, a consectetur leo commodo. Curabitur tellus nisl, tristique in nulla id, rutrum finibus mauris. Etiam non dignissim quam. Vestibulum pellentesque hendrerit lectus, quis commodo turpis. Nullam consectetur, arcu at mattis sollicitudin, urna risus auctor nulla, scelerisque eleifend turpis est a sem. Suspendisse vel rhoncus nulla. Aenean semper fermentum odio, a interdum sapien scelerisque sed.</p>
-
-            <p>Vestibulum feugiat tincidunt justo in pretium. Nam nec erat id ex lacinia blandit porttitor quis mi. Sed egestas porttitor sem, non iaculis urna volutpat nec. Maecenas commodo pharetra nulla, sed aliquet enim porta eu. Nam volutpat ligula ut est maximus, nec fringilla magna vestibulum. Praesent molestie lectus nunc, eget tincidunt mi auctor nec. Nunc nec scelerisque tellus, id maximus lectus. Nunc congue nisl a porttitor sollicitudin.</p>
-
-            <p>In sit amet dapibus libero. Nulla volutpat, augue et euismod placerat, sapien libero fringilla turpis, id pellentesque leo arcu vitae ex. Curabitur turpis lorem, congue tempus tincidunt eget, pharetra eget justo. Integer at imperdiet arcu. Vivamus ut ultrices mauris, nec commodo dolor. Fusce laoreet nunc eget lectus fermentum, at semper dui lobortis. Suspendisse molestie placerat nulla. Suspendisse commodo ex arcu, at sagittis neque varius in.</p>
-
-            <p>In imperdiet, odio eu rutrum bibendum, arcu felis blandit odio, et eleifend lectus massa tincidunt magna. Duis tristique urna vitae risus eleifend, vitae posuere tellus molestie. Donec quis urna a neque ultricies pretium. Integer porta, dui non hendrerit ullamcorper, mi est molestie justo, nec sagittis orci leo vitae nunc. Maecenas vel consectetur enim. Proin sollicitudin, est auctor laoreet egestas, nulla mauris lobortis mauris, in placerat erat ante vel ipsum. Pellentesque pulvinar lectus scelerisque, mollis erat vel, posuere mauris.</p>
-
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce bibendum nec magna id bibendum. Proin suscipit nibh tortor, id mattis ante fringilla eu. Maecenas id neque et mauris vehicula gravida. Suspendisse sed dignissim justo. Ut rutrum ornare elit eleifend molestie. Maecenas iaculis ipsum sit amet mauris rhoncus pulvinar. Fusce vehicula risus lacus, ut tincidunt lorem iaculis vel. Nullam quis pretium lectus. Sed mollis in leo in tincidunt.
-
-            <p>Mauris aliquet eros id urna porttitor, a consectetur leo commodo. Curabitur tellus nisl, tristique in nulla id, rutrum finibus mauris. Etiam non dignissim quam. Vestibulum pellentesque hendrerit lectus, quis commodo turpis. Nullam consectetur, arcu at mattis sollicitudin, urna risus auctor nulla, scelerisque eleifend turpis est a sem. Suspendisse vel rhoncus nulla. Aenean semper fermentum odio, a interdum sapien scelerisque sed.</p>
-
-            <p>Vestibulum feugiat tincidunt justo in pretium. Nam nec erat id ex lacinia blandit porttitor quis mi. Sed egestas porttitor sem, non iaculis urna volutpat nec. Maecenas commodo pharetra nulla, sed aliquet enim porta eu. Nam volutpat ligula ut est maximus, nec fringilla magna vestibulum. Praesent molestie lectus nunc, eget tincidunt mi auctor nec. Nunc nec scelerisque tellus, id maximus lectus. Nunc congue nisl a porttitor sollicitudin.</p>
-
-            <p>In sit amet dapibus libero. Nulla volutpat, augue et euismod placerat, sapien libero fringilla turpis, id pellentesque leo arcu vitae ex. Curabitur turpis lorem, congue tempus tincidunt eget, pharetra eget justo. Integer at imperdiet arcu. Vivamus ut ultrices mauris, nec commodo dolor. Fusce laoreet nunc eget lectus fermentum, at semper dui lobortis. Suspendisse molestie placerat nulla. Suspendisse commodo ex arcu, at sagittis neque varius in.</p>
-
-            <p>In imperdiet, odio eu rutrum bibendum, arcu felis blandit odio, et eleifend lectus massa tincidunt magna. Duis tristique urna vitae risus eleifend, vitae posuere tellus molestie. Donec quis urna a neque ultricies pretium. Integer porta, dui non hendrerit ullamcorper, mi est molestie justo, nec sagittis orci leo vitae nunc. Maecenas vel consectetur enim. Proin sollicitudin, est auctor laoreet egestas, nulla mauris lobortis mauris, in placerat erat ante vel ipsum. Pellentesque pulvinar lectus scelerisque, mollis erat vel, posuere mauris.</p>
+        <!-- STOP MOTION -->
+        <div class="content__section black">
+            <div class="content__section-inner">
+                <h3>Handcrafted Music Visualisations</h3>
+                <p class="content__lead">Years back, before I discovered code as a viable method of creation my attempts of crafting music visualisations included paper and stopmotion.</p>
+                <div class="content__main">
+                    <div class="row">
+                        <div class="col col-half">
+                            <div class="video">
+                                <iframe src="https://player.vimeo.com/video/235380784?title=0&byline=0&portrait=0" width="640" height="468" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                            </div>
+                        </div>
+                        <div class="col col-half">
+                            <div class="video">
+                                <iframe src="https://player.vimeo.com/video/235381814?title=0&byline=0&portrait=0" width="640" height="468" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="content__section">
-            <h1>This is my stuff</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce bibendum nec magna id bibendum. Proin suscipit nibh tortor, id mattis ante fringilla eu. Maecenas id neque et mauris vehicula gravida. Suspendisse sed dignissim justo. Ut rutrum ornare elit eleifend molestie. Maecenas iaculis ipsum sit amet mauris rhoncus pulvinar. Fusce vehicula risus lacus, ut tincidunt lorem iaculis vel. Nullam quis pretium lectus. Sed mollis in leo in tincidunt.
 
-            <p>Mauris aliquet eros id urna porttitor, a consectetur leo commodo. Curabitur tellus nisl, tristique in nulla id, rutrum finibus mauris. Etiam non dignissim quam. Vestibulum pellentesque hendrerit lectus, quis commodo turpis. Nullam consectetur, arcu at mattis sollicitudin, urna risus auctor nulla, scelerisque eleifend turpis est a sem. Suspendisse vel rhoncus nulla. Aenean semper fermentum odio, a interdum sapien scelerisque sed.</p>
+        <!-- MY MUSIC -->
+        <div class="content__section yellow">
+            <div class="content__section-inner">
+                <h3>First hand music experience</h3>
+                <p class="content__lead">These were different times though. Back then I used to play in rock and funk bands and I played the Marimbaphone in a percussion ensemble.</p>
+                <div class="content__main">
+                <div class="content__image content__image--center">
+                    <img src="assets/images/moaning_minnie.jpg">
+                </div>
+                </div>
+            </div>
+        </div>
 
-            <p>Vestibulum feugiat tincidunt justo in pretium. Nam nec erat id ex lacinia blandit porttitor quis mi. Sed egestas porttitor sem, non iaculis urna volutpat nec. Maecenas commodo pharetra nulla, sed aliquet enim porta eu. Nam volutpat ligula ut est maximus, nec fringilla magna vestibulum. Praesent molestie lectus nunc, eget tincidunt mi auctor nec. Nunc nec scelerisque tellus, id maximus lectus. Nunc congue nisl a porttitor sollicitudin.</p>
+        <!-- HPSTR PYRAMID -->
+        <div class="content__section white">
+            <div class="content__section-inner">
+                <p class="content__lead">Later I discovered the power of code and the endless possiblities of making digital music.</p>
+                <div class="content__main">
+                    <div class="video video--narrow">
+                        <iframe src="https://player.vimeo.com/video/63228955?title=0&byline=0&portrait=0" width="800" height="450" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                    </div>
+                    <div class="content__main-footer">
+                        <a class="content__link" target="_blank" href="http://flavio.is/good/at/stuff/like/pyramid">View Full Project</a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-            <p>In sit amet dapibus libero. Nulla volutpat, augue et euismod placerat, sapien libero fringilla turpis, id pellentesque leo arcu vitae ex. Curabitur turpis lorem, congue tempus tincidunt eget, pharetra eget justo. Integer at imperdiet arcu. Vivamus ut ultrices mauris, nec commodo dolor. Fusce laoreet nunc eget lectus fermentum, at semper dui lobortis. Suspendisse molestie placerat nulla. Suspendisse commodo ex arcu, at sagittis neque varius in.</p>
+        <!-- SMART TOYS -->
+        <div class="content__section purple-dark">
+            <div class="content__section-inner">
+                <p class="content__lead">It was during my studies where I discovered my interest in education — especially my interest in computer education. During a course wonderfully titled “Smart Toys” I got in touch with the teachings of Seymour Papert and Jean Piaget and discovered the field of Explorable Explanations.</p>
+                <div class="content__main">
+                    <div class="row">
+                        <div class="col col-half">
+                            <div class="content__image">
+                                <img src="assets/images/programming_blocks_1.jpg">
+                            </div>
+                            <div class="content__image">
+                                <img src="assets/images/programming_blocks_2.jpg">
+                            </div>
+                        </div>
+                        <div class="col col-half">
+                            <p class="content__copy">
+                                In <b>“Programming Blocks”</b> we tried to teach kids the most basic building blocks of a computer program, such as conditions and functions, simply by attaching hexagon shaped blocks together.
+                            </p>
+                            <a class="content__link" target="_blank" href="http://flavio.is/good/at/stuff/like/programming-blocks">View Project</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col col-half">
+                            <p class="content__copy">
+                                With <b>“Huggaballs”</b> we tried to help kids record their own stories and secrets and share them with their friends. We built cuddly, round monsters that remember the things you tell them when you hug them strongly enough. They then swap their stories with another monster when bumped into each other. 
+                            </p>
+                        </div>
+                        <div class="col col-half">
+                            <div class="content__image">
+                                <img src="assets/images/hugaballs_1.jpg">
+                            </div>
+                            <div class="content__image">
+                                <img src="assets/images/hugaballs_2.jpg">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-            <p>In imperdiet, odio eu rutrum bibendum, arcu felis blandit odio, et eleifend lectus massa tincidunt magna. Duis tristique urna vitae risus eleifend, vitae posuere tellus molestie. Donec quis urna a neque ultricies pretium. Integer porta, dui non hendrerit ullamcorper, mi est molestie justo, nec sagittis orci leo vitae nunc. Maecenas vel consectetur enim. Proin sollicitudin, est auctor laoreet egestas, nulla mauris lobortis mauris, in placerat erat ante vel ipsum. Pellentesque pulvinar lectus scelerisque, mollis erat vel, posuere mauris.</p>
+        <!-- SERIOUS STUFF -->
+        <div class="content__section yellow">
+            <div class="content__section-inner">
+                <h3>&hellip;slightly more serious stuff</h3>
+                <p class="content__lead">I was always interested in the power of visualisation as a tool for communication. This could be the visualisation of a dataset or the visualisation of a system to reveal  its workings.</p>
+                <div class="content__main">
+                    <div class="row">
+                        <div class="content__image content__image--negative">
+                            <img src="assets/images/welfare_states.png">
+                        </div>
+                        <div class="project-description">
+                            <p class="project-description__title">Social Welfare States</p>
+                            <p class="project-description__copy">A project for a Ph.D. student on the state of welfare in the major democracies</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="content__image content__image--negative">
+                            <img src="assets/images/social_inclusion.png">
+                        </div>
+                        <div class="project-description">
+                            <a class="content__link project-description__link" target="_blank" href="https://www.social-inclusion-monitor.eu/#!/">View</a>
+                            <p class="project-description__title">Social Inclusion Monitor</p>
+                            <p class="project-description__copy">A project I was involved in at MINGLABS for Bertelsman Stiftung on the state of Social Inclusion in EU countries</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="content__image content__image--negative">
+                            <img src="assets/images/geteiltes_land.png">
+                        </div>
+                        <div class="project-description">
+                            <a class="content__link project-description__link" target="_blank" href="http://www.zeit.de/feature/germany-urban-rural-population-division-prejudice">View</a>
+                            <p class="project-description__title">Diving into Urban-Rural Prejudice</p>
+                            <p class="project-description__copy">A more recent project I worked at Zeit Online</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce bibendum nec magna id bibendum. Proin suscipit nibh tortor, id mattis ante fringilla eu. Maecenas id neque et mauris vehicula gravida. Suspendisse sed dignissim justo. Ut rutrum ornare elit eleifend molestie. Maecenas iaculis ipsum sit amet mauris rhoncus pulvinar. Fusce vehicula risus lacus, ut tincidunt lorem iaculis vel. Nullam quis pretium lectus. Sed mollis in leo in tincidunt.
+        <!-- COINS -->
+        <div class="content__section blue">
+            <div class="content__section-inner">
+                <h3>&hellip;again slightly less serious stuff</h3>
+                <p class="content__lead">One of my more recent endeveours involved the visualisation of a massive amount of coins. I built a big interactive visualisation in collaboration with the Coin Museum Berlin.</p>
+                <div class="content__main">
+                    <div class="row">
+                        <img src="assets/images/coins.png">
+                        <div class="project-description">
+                            <a class="content__link project-description__link" target="_blank" href="https://uclab.fh-potsdam.de/coins/">View</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-            <p>Mauris aliquet eros id urna porttitor, a consectetur leo commodo. Curabitur tellus nisl, tristique in nulla id, rutrum finibus mauris. Etiam non dignissim quam. Vestibulum pellentesque hendrerit lectus, quis commodo turpis. Nullam consectetur, arcu at mattis sollicitudin, urna risus auctor nulla, scelerisque eleifend turpis est a sem. Suspendisse vel rhoncus nulla. Aenean semper fermentum odio, a interdum sapien scelerisque sed.</p>
 
-            <p>Vestibulum feugiat tincidunt justo in pretium. Nam nec erat id ex lacinia blandit porttitor quis mi. Sed egestas porttitor sem, non iaculis urna volutpat nec. Maecenas commodo pharetra nulla, sed aliquet enim porta eu. Nam volutpat ligula ut est maximus, nec fringilla magna vestibulum. Praesent molestie lectus nunc, eget tincidunt mi auctor nec. Nunc nec scelerisque tellus, id maximus lectus. Nunc congue nisl a porttitor sollicitudin.</p>
-
-            <p>In sit amet dapibus libero. Nulla volutpat, augue et euismod placerat, sapien libero fringilla turpis, id pellentesque leo arcu vitae ex. Curabitur turpis lorem, congue tempus tincidunt eget, pharetra eget justo. Integer at imperdiet arcu. Vivamus ut ultrices mauris, nec commodo dolor. Fusce laoreet nunc eget lectus fermentum, at semper dui lobortis. Suspendisse molestie placerat nulla. Suspendisse commodo ex arcu, at sagittis neque varius in.</p>
-
-            <p>In imperdiet, odio eu rutrum bibendum, arcu felis blandit odio, et eleifend lectus massa tincidunt magna. Duis tristique urna vitae risus eleifend, vitae posuere tellus molestie. Donec quis urna a neque ultricies pretium. Integer porta, dui non hendrerit ullamcorper, mi est molestie justo, nec sagittis orci leo vitae nunc. Maecenas vel consectetur enim. Proin sollicitudin, est auctor laoreet egestas, nulla mauris lobortis mauris, in placerat erat ante vel ipsum. Pellentesque pulvinar lectus scelerisque, mollis erat vel, posuere mauris.</p>
+        <!-- COINS -->
+        <div id="outro" class="content__section content__section--outro black">
+            <div class="content__section-inner">
+                <p class="content__outro-lead">Thanks for looking through my projects! If you want to see some more go to <a target="_blank" href="http://flavio.is/">my Website</a>.</p>
+                <p class="content__outro-copy">Also, in case you're interested, you can find the code to this website on <a href="https://github.com/Flave?tab=repositories" target="_blank">Github</a>.</p>
+            </div>
         </div>
     </div>
     <div id="music-container"></div>
     <div class="ui">
         <span id="adder-container">
             <span class="adder__copy">Add</span>
-            <span id="adder-shapes-container"></span>
+            <span id="adder__shapes-container"></span>
         </span>
         <span id="controls-container"></span>
         <span id="hiding-container"></span>
     </div>
-    <!-- <div id="initial-spinner"></div> -->
+    <div id="hints-container"></div>
     <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700" rel="stylesheet">
     <script src="app.bundle.js" charset="utf-8"></script>
   </body>
