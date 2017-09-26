@@ -1,0 +1,21 @@
+.hint {
+  position: fixed;
+  padding: 15px;
+  background-color: $c-yellow;
+  color: #000;
+  width: 160px;
+  box-shadow: 0 0 8px rgba(#000, .2);
+  transform: translateX(-50%);
+  z-index: 999;
+
+  &:after {
+    content: "";
+    position: absolute;
+    width: 13px;
+    height: 13px;
+    top: -7px;
+    left: 50%;
+    background-color: $c-yellow;
+    transform: translateX(-50%) rotate(45deg);
+  }
+}
