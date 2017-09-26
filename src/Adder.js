@@ -58,7 +58,7 @@ export default function Adder() {
   function handleDrag(d) {
     const {x, y} = d3_event;
     const parentX = this.parentNode.getBoundingClientRect().left;
-    const scale = (parentX + x) / window.innerWidth * 4 + 1;
+    const scale = (parentX + x) / window.innerWidth * 1.2 + 1;
     const rotation = (parentX + x) / window.innerWidth * 360;
     d3_select(this)
       .classed('is-played', false)
@@ -75,7 +75,7 @@ export default function Adder() {
       const x = d3_event.sourceEvent.clientX - centerDx;
 
       dispatch.call('add', null, d.id, {
-        x: x,
+        gain: x / window.innerWidth,
         y: y < runUp ? runUp : y
       });
     }

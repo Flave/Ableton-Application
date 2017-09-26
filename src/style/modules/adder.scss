@@ -2,7 +2,7 @@
   display: inline-block;
   color: #fff;
   background-color: #222;
-  padding: 8px 14px;
+  padding: 11px 14px;
 
   &.is-hidden {
     pointer-events: none;
@@ -14,20 +14,24 @@
   @include ui-text;
 }
 
+#adder__shapes-container {
+  display: inline-block;
+}
+
 .adder__instrument {
   display: inline-block;
-  width: 45px;
-  height: 45px;
+  width: 34px;
+  height: 34px;
   vertical-align: middle;
   position: relative;
-  margin-left: 5px;
+  margin-left: 8px;
   background-size: 100% 100%;
   background-position: 50% 50%;
 }
 
 .adder__draggable {
-  width: 45px;
-  height: 45px;
+  width: 34px;
+  height: 34px;
   position: relative;
   display: inline-block;
   cursor: pointer;
